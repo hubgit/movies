@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Movies in London this week</title>
+	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+	<link rel="stylesheet" href="movies.css">
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">
+	      <ul class="nav">
+		      <li><a href="#opening">Opening This Week</a></li>
+		      <li><a href="#in_theaters">In Theatres</a></li>
+		    </ul>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="movies"></div>
+
+	<script type="text/html" data-template="movie">
+	<div class="movie">
+	    <div class="meta">
+	        <div>
+	            <a class="title" href="{{links.alternate}}">{{title}}</a>
+	        </div>
+
+	        <div>
+	            {{#year}}<span class="year">{{year}}</span>{{/year}}{{#abridged_directors}}<span class="director">{{name}}</span>{{/abridged_directors}}
+	        </div>
+	    </div>
+	        
+	    {{#posters}}<img class="poster" src="{{posters.detailed}}">{{/posters}}
+	    
+	    {{#studio}}<div class="studio">{{studio}}</div>{{/studio}}
+	        
+	    {{#alternate_ids}}
+	    <div class="links">
+	        <a class="link google" href="http://www.google.co.uk/movies?q={{title}}"></a>
+	        {{#imdb}}<a class="link imdb" href="http://www.imdb.com/title/tt{{imdb}}"></a>{{/imdb}}           
+	    </div>
+	    {{/alternate_ids}}
+	</div>
+	</script>​
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="https://raw.github.com/janl/mustache.js/master/mustache.js"></script>
+	<script src="movies.js"></script>
+</body>
+</html>
