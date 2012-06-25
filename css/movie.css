@@ -36,11 +36,13 @@
 .movie .studio {
     color: #777;
     margin: 5px 0;    
+    min-height: 20px;
 }
 
 .movie .poster {
     display: block;
     margin: 5px 0;
+    height: 270px;
 }
 
 .movie .link {
