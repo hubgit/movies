@@ -16,10 +16,14 @@
 
 .movie .year {
     font-weight: bold;   
+    float:right;
+    color: #AAA;
 }
 
 .movie .director {
     color: #08C;
+    font-weight: bold;
+    min-height: 1em;
 }
 
 .movie .director:before {
