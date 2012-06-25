@@ -26,9 +26,11 @@
 	        <div>
 	            <a class="title" href="{{links.alternate}}">{{title}}</a>
 	        </div>
+	        
+	        {{#year}}<span class="year">{{year}}</span>{{/year}}
 
-	        <div>
-	            {{#year}}<span class="year">{{year}}</span>{{/year}}{{#abridged_directors}}<span class="director">{{name}}</span>{{/abridged_directors}}
+	        <div class="directors">
+	            {{#abridged_directors}}<span class="director">{{name}}</span>{{/abridged_directors}}
 	        </div>
 	    </div>
 	        
