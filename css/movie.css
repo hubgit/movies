@@ -57,6 +57,10 @@
     background-image: url("http://google.co.uk/favicon.ico");
 }
 
+.movie .link.letterboxd {
+    background-image: url("http://letterboxd.com/static/img/favicon.png");
+}
+
 .movie .link.imdb {
     background-image: url("http://i.media-imdb.com/images/favicon.ico");
     width: 20px;
