@@ -3,25 +3,25 @@
 <head>
 	<meta charset="utf-8">
 	<title>Movies in London</title>
-	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
-	<link rel="stylesheet" href="movies.css">
+
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/movie.css">
+	<link rel="stylesheet" href="css/layout.css">
 </head>
+
 <body>
 	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">
-	    <div class="">
 	      <ul class="nav">
-		      <li><a href="#opening">Opening This Week</a></li>
-		      <li><a href="#in_theaters">In Theatres</a></li>
-		    </ul>
-	    </div>
+		    <li><a href="#in_theaters">In Theatres</a></li>
+		    <li><a href="#opening">Opening This Week</a></li>
+		  </ul>
 	  </div>
 	</div>
 
 	<div id="movies"></div>
 
 	<script type="text/html" data-template="movie">
-	<div class="movie">
 	    <div class="meta">
 	        <div>
 	            <a class="title" href="{{links.alternate}}">{{title}}</a>
@@ -42,11 +42,15 @@
 	        {{#imdb}}<a class="link imdb" href="http://www.imdb.com/title/tt{{imdb}}"></a>{{/imdb}}           
 	    </div>
 	    {{/alternate_ids}}
-	</div>
 	</script>​
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script src="https://raw.github.com/janl/mustache.js/master/mustache.js"></script>
-	<script src="movies.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/mustache.js"></script>
+	<script src="js/underscore.js"></script>
+	<script src="js/backbone.js"></script>
+	<script src="js/rotten-tomatoes.js"></script>
+	<script src="resources/Movie.js"></script>
+	<script src="resources/Movies.js"></script>
+	<script src="js/app.js"></script>
 </body>
 </html>

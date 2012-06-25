@@ -1,11 +1,3 @@
-.navbar .nav { 
-    margin-left: 10px;
-}
-
-#movies {
-    margin-top: 40px;   
-}
-
 .movie {
     display: inline-block;
     vertical-align: top;
