@@ -2,14 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Movies in London this week</title>
+	<title>Movies in London</title>
 	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
 	<link rel="stylesheet" href="movies.css">
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">
-	    <div class="container">
+	    <div class="">
 	      <ul class="nav">
 		      <li><a href="#opening">Opening This Week</a></li>
 		      <li><a href="#in_theaters">In Theatres</a></li>
@@ -32,7 +32,7 @@
 	        </div>
 	    </div>
 	        
-	    {{#posters}}<img class="poster" src="{{posters.detailed}}">{{/posters}}
+	    {{#posters}}<a href="{{links.alternate}}"><img class="poster" src="{{posters.detailed}}"></a>{{/posters}}
 	    
 	    {{#studio}}<div class="studio">{{studio}}</div>{{/studio}}
 	        
