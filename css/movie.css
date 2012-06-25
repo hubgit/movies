@@ -20,10 +20,13 @@
     color: #AAA;
 }
 
+.movie .directors {
+    min-height: 1em;
+}
+
 .movie .director {
     color: #08C;
     font-weight: bold;
-    min-height: 1em;
 }
 
 .movie .director:before {
