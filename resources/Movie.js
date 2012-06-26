@@ -6,7 +6,7 @@ var MovieView = Backbone.View.extend({
     attributes: {
     	"class": "movie",
     	"vocab": "http://schema.org/",
-    	"type": "Movie"
+    	"typeof": "Movie"
     },
 
     initialize: function() {

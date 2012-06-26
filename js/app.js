@@ -1,7 +1,7 @@
 $(function() {
 	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
 
-	$(document).on("click", ".movie a", function openNewWindow(event) {
+	$("#movies").on("click", "a", function openNewWindow(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		window.open(this.href);
