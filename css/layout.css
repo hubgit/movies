@@ -1,11 +1,11 @@
 .navbar .nav { 
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 #movies {
-    margin-top: 40px;   
+	margin-top: 40px;   
 }
 
-[type] > div {
+[typeof] > div {
 	min-height: 20px;
 }
