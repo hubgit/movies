@@ -1,4 +1,4 @@
-.movie {
+[type="Movie"] {
     display: inline-block;
     vertical-align: top;
     min-width: 180px;
@@ -8,70 +8,39 @@
     padding: 10px;
 }
 
-.movie .title {
+[type="Movie"] [property="name"] {
     font-size: 120%;
     font-weight: bold;
     color: inherit;
 }
 
-.movie .year {
+[type="Movie"] [property="datePublished"] {
     font-weight: bold;   
     float:right;
     color: #AAA;
+    display: inline-block;
 }
 
-.movie .directors {
-    min-height: 20px;
-}
-
-.movie .director {
+[type="Movie"] [property="director"] {
     color: #08C;
     font-weight: bold;
 }
 
-.movie .director:before {
+[type="Movie"] [property="director"]:before {
     content: " ";    
 }
 
-.movie .studio {
-    color: #777;
-    min-height: 20px;
+[type="Movie"] [property="director"]:not(:last-of-type):after {
+    content: ",";    
 }
 
-.movie .poster {
+[type="Movie"] [property="productionCompany"] {
+    color: #777;
+}
+
+[type="Movie"] [property="url"] {
     display: block;
     margin: 5px 0;
     height: 270px;
 }
 
-.movie .links {
-    -webkit-filter: grayscale(1);   
-}
-
-.movie .links:hover {
-    -webkit-filter: grayscale(0);   
-}
-
-.movie .link {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-size: 16px 16px;
-    background-position: left center;
-    background-repeat: no-repeat;
-}
-
-.movie .link.google {
-    background-image: url("http://google.co.uk/favicon.ico");
-}
-
-.movie .link.letterboxd {
-    background-image: url("http://letterboxd.com/static/img/favicon.png");
-}
-
-.movie .link.imdb {
-    background-image: url("http://i.media-imdb.com/images/favicon.ico");
-    width: 20px;
-    height: 16px;
-    background-size: 20px 16px;
-}

@@ -8,7 +8,7 @@ var MoviesView = Backbone.View.extend({
     },
 
     append: function(movie) {
-        var view = new MovieView({ model: movie, className: "movie" });
+        var view = new MovieView({ model: movie });
         this.$el.append(view.render().el);
     }
 });

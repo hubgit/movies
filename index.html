@@ -5,8 +5,9 @@
 	<title>Movies in London</title>
 
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/movie.css">
 	<link rel="stylesheet" href="css/layout.css">
+	<link rel="stylesheet" href="css/service.css">
+	<link rel="stylesheet" href="css/movie.css">
 </head>
 
 <body>
@@ -22,27 +23,25 @@
 	<div id="movies"></div>
 
 	<script type="text/html" data-template="movie">
-	    <div class="meta">
-	        <div>
-	            <a class="title" href="{{links.alternate}}">{{title}}</a>
-	        </div>
-	        
-	        {{#year}}<span class="year">{{year}}</span>{{/year}}
+        <div>
+            <a property="name" href="{{links.alternate}}">{{title}}</a>
+        </div>
+        
+        {{#year}}<div property="datePublished">{{year}}</div>{{/year}}
 
-	        <div class="directors">
-	            {{#abridged_directors}}<span class="director">{{name}}</span>{{/abridged_directors}}
-	        </div>
-	    </div>
+        <div>
+            {{#abridged_directors}}<span property="director">{{name}}</span>{{/abridged_directors}}
+        </div>
 	        
-	    <a class="poster" href="{{links.alternate}}"><img src="{{posters.detailed}}"></a>
+	    <a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
 	    
-	    <div class="studio">{{studio}}</div>
+	    <div property="productionCompany">{{studio}}</div>
 	        
 	    {{#alternate_ids}}
-	    <div class="links">
-	        <a class="link google" href="http://www.google.co.uk/movies?q={{title}}"></a>
-	        {{#imdb}}<a class="link imdb" href="http://www.imdb.com/title/tt{{imdb}}"></a>{{/imdb}}  
-	        {{#imdb}}<a class="link letterboxd" href="http://letterboxd.com/imdb/tt{{imdb}}"></a>{{/imdb}}
+	    <div>
+	        <a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
+	        {{#imdb}}<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{imdb}}"></a>{{/imdb}}  
+	        {{#imdb}}<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{imdb}}"></a>{{/imdb}}
 	    </div>
 	    {{/alternate_ids}}
 	</script>​

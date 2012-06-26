@@ -5,3 +5,7 @@
 #movies {
     margin-top: 40px;   
 }
+
+[type] > div {
+	min-height: 20px;
+}

@@ -1,0 +1,30 @@
+.service {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    -webkit-filter: grayscale(1);  
+}
+
+.service:hover {
+    opacity: 1;
+    -webkit-filter: grayscale(0);   
+}
+
+.service[data-service="google"] {
+    background-image: url("http://google.co.uk/favicon.ico");
+}
+
+.service[data-service="letterboxd"] {
+    background-image: url("http://letterboxd.com/static/img/favicon.png");
+}
+
+.service[data-service="imdb"] {
+    background-image: url("http://i.media-imdb.com/images/favicon.ico");
+    width: 20px;
+    height: 16px;
+    background-size: 20px 16px;
+}

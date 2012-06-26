@@ -3,6 +3,12 @@ var Movie = Backbone.Model.extend({});
 var MovieView = Backbone.View.extend({
     template: $("[data-template='movie']").html(),
 
+    attributes: {
+    	"class": "movie",
+    	"vocab": "http://schema.org/",
+    	"type": "Movie"
+    },
+
     initialize: function() {
       this.model.bind("change", this.render, this);
     },
