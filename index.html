@@ -2,25 +2,32 @@
 <html>
 <head>
 	<meta charset="utf-8">
+
 	<title>Movies in London</title>
 
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<meta name="viewport" content="width=device-width">
+
 	<link rel="stylesheet" href="css/layout.css">
+	<link rel="stylesheet" href="css/nav.css">
 	<link rel="stylesheet" href="css/service.css">
 	<link rel="stylesheet" href="css/movie.css">
 </head>
 
 <body>
-	<div class="navbar navbar-fixed-top">
-	  <div class="navbar-inner">
-		  <ul class="nav">
-			<li><a href="#in_theaters">In Theatres</a></li>
-			<li><a href="#opening">Opening This Week</a></li>
-		  </ul>
-	  </div>
+	<div id="header-container">
+		<header class="wrapper">
+			<nav>
+				<a href="#in_theaters">In Theatres</a>
+				<a href="#opening">Opening This Week</a>
+			</nav>
+		</header>
 	</div>
 
-	<div id="movies"></div>
+	<div id="main-container">
+		<div id="main" class="wrapper">
+			<div id="movies"></div>
+		</div>
+	</div>
 
 	<script type="text/html" data-template="movie">
 		<div>
