@@ -48,12 +48,16 @@ $(function() {
 	};
 
 	var init = function() {
+		// reset the AJAX queue
+		$.ajaxQueue.stop(true);
+
 		// get the selected type of listing from the location hash
 		var type = location.hash.replace("#", "") || "in_theaters";
 
 		// set the active item in the nav bar
 		$("nav a").removeClass("active").filter("[href='#" + type + "']").addClass("active");
 
+		// empty the collection (in case switching sections)
 		movies.reset();
 
 		// fetch the list of items and display them

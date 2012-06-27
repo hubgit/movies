@@ -10,7 +10,12 @@ var RottenTomatoes = function(options) {
     this.get = function(url, params, callback) {
         params = $.extend({}, this.defaults, params);
         url += url.indexOf("?") === -1 ? "?" : "&";
-        $.getJSON(url + "callback=?", params, callback);
+        $.ajaxQueue({
+            url: url + "callback=?",
+            data: params,
+            dataType: "json",
+            success: callback,
+        });
     };
 
     this.list = function(type, callback) {
