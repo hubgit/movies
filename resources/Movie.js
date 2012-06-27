@@ -4,7 +4,6 @@ var MovieView = Backbone.View.extend({
     template: $("[data-template='movie']").html(),
 
     attributes: {
-    	"class": "movie",
     	"vocab": "http://schema.org/",
     	"typeof": "Movie"
     },
