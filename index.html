@@ -14,20 +14,14 @@
 </head>
 
 <body>
-	<div id="header-container">
-		<header class="wrapper">
-			<nav>
-				<a href="#in_theaters">In Theatres</a>
-				<a href="#opening">Opening This Week</a>
-			</nav>
-		</header>
-	</div>
+	<header>
+		<nav class="wrapper">
+			<a href="#in_theaters">In Theatres</a>
+			<a href="#opening">Opening This Week</a>
+		</nav>
+	</header>
 
-	<div id="main-container">
-		<div id="main" class="wrapper">
-			<div id="movies"></div>
-		</div>
-	</div>
+	<div id="movies" class="wrapper"></div>
 
 	<script type="text/html" data-template="movie">
 		<div>
@@ -44,13 +38,13 @@
 		
 		<div property="productionCompany">{{studio}}</div>
 			
-		{{#alternate_ids}}
-		<div>
+		<footer>
 			<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
+			{{#alternate_ids}}
 			{{#imdb}}<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{imdb}}"></a>{{/imdb}}  
 			{{#imdb}}<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{imdb}}"></a>{{/imdb}}
-		</div>
-		{{/alternate_ids}}
+			{{/alternate_ids}}
+		</footer>
 	</script>​
 
 	<script src="js/jquery.js"></script>
