@@ -19,29 +19,32 @@ $(function() {
 
 	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
 
+	// augment each item with extra information
 	var augment = function(movie) {
+		if (movie.get("augmented")) return;
+
 		// fetch full data for individual movies
 		tomatoes.get(movie.get("links").self, {}, function(data) {
-			if (data) movie.set(data);
+			if (data) {
+				movie.set(data);
+				movie.set("augmented", true);
+			}
 		});
 	};
 
-	var fetchURL = function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		tomatoes.get(event.currentTarget.href, {}, function(data) {
-			movies.add(data.movies);
-			render(data);
-		});
-	};
-
-		paginationView.delegateEvents({
-		"click a": fetchURL
+	paginationView.delegateEvents({
+		"click a": function fetchURL(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			tomatoes.get(event.currentTarget.href, {}, update);
+		}
 	});
 
-	var render = function(data) {
+	var update = function(data) {
+		movies.add(data.movies);
 		moviesView.render();
 		paginationView.render(data.links);
+		movies.each(augment);
 	};
 
 	var init = function() {
@@ -51,14 +54,10 @@ $(function() {
 		// set the active item in the nav bar
 		$("nav a").removeClass("active").filter("[href='#" + type + "']").addClass("active");
 
-		// fetch the list of items and display them
-		tomatoes.list(type, function(data) {
-			movies.reset(data.movies);
-			render(data);
+		movies.reset();
 
-			// augment each item with extra information
-			movies.each(augment);
-		});
+		// fetch the list of items and display them
+		tomatoes.list(type, update);
 	};
 
 	Templates.load(["Movie"]).done(init);
