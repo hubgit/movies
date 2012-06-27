@@ -1,11 +1,23 @@
 $(function() {
-	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
+	/** Collections and Views **/
 
-	$("#movies").on("click", "a", function openNewWindow(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		window.open(this.href);
+	var movies = new Models.Movies();
+
+	var moviesView = new Views.Movies({
+		//id: "movies",
+		//className: "wrapper",
+		el: "#movies",
+		collection: movies,
 	});
+
+	var paginationView = new Views.Pagination({
+		//id: "pagination"
+		el: "#pagination",
+	});
+
+	/** API calls **/
+
+	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
 
 	var augment = function(movie) {
 		// fetch full data for individual movies
@@ -14,10 +26,25 @@ $(function() {
 		});
 	};
 
-	var init = function() {
-		// empty the view
-		$("#movies").empty();
+	var fetchURL = function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		tomatoes.get(event.currentTarget.href, {}, function(data) {
+			movies.add(data.movies);
+			render(data);
+		});
+	};
 
+		paginationView.delegateEvents({
+		"click a": fetchURL
+	});
+
+	var render = function(data) {
+		moviesView.render();
+		paginationView.render(data.links);
+	};
+
+	var init = function() {
 		// get the selected type of listing from the location hash
 		var type = location.hash.replace("#", "") || "in_theaters";
 
@@ -26,14 +53,12 @@ $(function() {
 
 		// fetch the list of items and display them
 		tomatoes.list(type, function(data) {
-			var collection = new Movies(data.movies);
-			var view = new MoviesView({ collection: collection });
+			movies.reset(data.movies);
+			render(data);
 
 			// augment each item with extra information
-			collection.each(augment);
+			movies.each(augment);
 		});
-
-		// TODO: pagination
 	};
 
 	Templates.load(["Movie"]).done(init);
