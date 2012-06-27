@@ -1,9 +1,62 @@
-.navbar .nav { 
-	margin-left: 10px;
+
+article, nav {
+	display: block;
 }
 
-#movies {
-	margin-top: 40px;   
+html {
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	color: #000;
+	font-size: 100%;
+}
+
+body {
+	font-family: Helvetica, Helvetica Neue, Arial, sans-serif;
+	font-size: 90%;
+	line-height: 1.4;
+	margin: 0;
+}
+
+a {
+	color: #00e;
+	text-decoration: none;
+}
+
+a:focus {
+	outline: thin dotted;
+}
+
+a:hover, a:active {
+	outline: 0;
+}
+
+article a:hover {
+	text-decoration: underline;
+}
+
+.wrapper{
+	margin: 0 5%;
+	width: 90%;
+}
+
+@media only screen and (min-width: 1140px) {
+	.wrapper {
+		margin: 0 auto;
+		width: 1026px;
+	}
+}
+
+#main {
+	padding: 10px 0;
+}
+
+#header-container {
+	background: #444;
+	box-shadow: 0 5px 10px #aaa;
+}
+
+h1 {
+	margin: 5px 20px;
 }
 
 [typeof] > div {

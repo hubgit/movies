@@ -25,7 +25,7 @@ $(function() {
 	  var type = location.hash.replace("#", "") || "in_theaters";
 
 	  // set the active item in the nav bar
-	  $(".nav li").removeClass("active").find("a[href='#" + type + "']").parent().addClass("active");
+	  $("nav a").removeClass("active").filter("[href='#" + type + "']").addClass("active");
 
 	  // fetch the list of items and display them
 	  tomatoes.list(type, function(data) {
