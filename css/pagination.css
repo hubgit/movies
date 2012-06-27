@@ -1,0 +1,15 @@
+.pagination {
+	margin-bottom: 40px;
+}
+
+.pagination a {
+	display: block;
+	padding: 10px;
+	background: #444;
+	text-align: center;
+	color: white;
+}
+
+.pagination a:hover {
+	background: #000;
+}

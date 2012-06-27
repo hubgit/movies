@@ -1,14 +1,14 @@
-var Templates = {
-	load: function(templates) {
-		return $.when.apply(this, templates.map(this.fetch));
-	},
+var Templates = {};
 
-	fetch: function(template) {
-		return $.ajax({
-			url: "templates/" + encodeURIComponent(template) + ".html",
-			dataType: "text",
-		}).done(function(data) {
-			Templates[template] = data;
-		});
-	},
+Templates.load = function(templates) {
+    return $.when.apply(this, templates.map(this.fetch));
+};
+
+Templates.fetch = function(template) {
+    return $.ajax({
+        url: "templates/" + encodeURIComponent(template) + ".html",
+        dataType: "text",
+    }).done(function(data) {
+        Templates[template] = data;
+    });
 };
