@@ -1,4 +1,4 @@
-[typeof=Movie] {
+div[typeof=Movie] {
     display: inline-block;
     vertical-align: top;
     min-width: 180px;
@@ -8,37 +8,37 @@
     padding: 10px;
 }
 
-[typeof=Movie] [property=name] {
+div[typeof=Movie] [property=name] {
     font-size: 120%;
     font-weight: bold;
     color: inherit;
 }
 
-[typeof=Movie] [property=datePublished] {
+div[typeof=Movie] [property=datePublished] {
     font-weight: bold;   
     float:right;
     color: #AAA;
     display: inline-block;
 }
 
-[typeof=Movie] [property=director] {
+div[typeof=Movie] [property=director] {
     color: #08C;
     font-weight: bold;
 }
 
-[typeof=Movie] [property=director]:before {
+div[typeof=Movie] [property=director]:before {
     content: " ";    
 }
 
-[typeof=Movie] [property=director]:not(:last-of-type):after {
+div[typeof=Movie] [property=director]:not(:last-of-type):after {
     content: ",";    
 }
 
-[typeof=Movie] [property=productionCompany] {
+div[typeof=Movie] [property=productionCompany] {
     color: #777;
 }
 
-[typeof=Movie] [property=url] {
+div[typeof=Movie] [property=url] {
     display: block;
     margin: 5px 0;
     height: 270px;
