@@ -23,30 +23,6 @@
 
 	<div id="movies" class="wrapper"></div>
 
-	<script type="text/html" data-template="movie">
-		<div>
-			<a property="name" href="{{links.alternate}}">{{title}}</a>
-		</div>
-		
-		{{#year}}<div property="datePublished">{{year}}</div>{{/year}}
-
-		<div>
-			{{#abridged_directors}}<span property="director">{{name}}</span>{{/abridged_directors}}
-		</div>
-			
-		<a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
-		
-		<div property="productionCompany">{{studio}}</div>
-			
-		<footer>
-			<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
-			{{#alternate_ids}}
-			{{#imdb}}<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{imdb}}"></a>{{/imdb}}  
-			{{#imdb}}<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{imdb}}"></a>{{/imdb}}
-			{{/alternate_ids}}
-		</footer>
-	</script>​
-
 	<script src="js/jquery.js"></script>
 	<script src="js/mustache.js"></script>
 	<script src="js/underscore.js"></script>

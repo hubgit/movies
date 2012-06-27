@@ -1,8 +1,6 @@
 var Movie = Backbone.Model.extend({});
 
 var MovieView = Backbone.View.extend({
-    template: $("[data-template='movie']").html(),
-
     tagName: "article",
 
     attributes: {
@@ -15,7 +13,7 @@ var MovieView = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(Mustache.render(this.template, this.model.toJSON()));
+        this.$el.html(Mustache.render(Templates.Movie, this.model.toJSON()));
         return this;
     }
 });
