@@ -6,16 +6,16 @@
     background-position: left center;
     background-repeat: no-repeat;
     opacity: 0.5;
-    -webkit-filter: grayscale(1);  
+    -webkit-filter: grayscale(1); filter: grayscale(1);
 }
 
 .service:hover {
     opacity: 1;
-    -webkit-filter: grayscale(0);   
+    -webkit-filter: grayscale(0); filter: grayscale(0);
 }
 
 .service[data-service="google"] {
-    background-image: url("http://google.co.uk/favicon.ico");
+    background-image: url("http://www.google.co.uk/favicon.ico");
 }
 
 .service[data-service="letterboxd"] {

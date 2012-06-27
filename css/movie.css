@@ -1,21 +1,19 @@
 [typeof=Movie] {
     display: inline-block;
     vertical-align: top;
-    min-width: 180px;
-    max-width: 360px;
-    width: auto;
+    width: 180px;
     margin: 10px;
     padding: 10px;
 }
 
 [typeof=Movie] [property=name] {
-    font-size: 120%;
+    font-size: 110%;
     font-weight: bold;
     color: inherit;
 }
 
 [typeof=Movie] [property=datePublished] {
-    font-weight: bold;   
+    font-weight: bold;
     float:right;
     color: #AAA;
     display: inline-block;
@@ -27,11 +25,11 @@
 }
 
 [typeof=Movie] [property=director]:before {
-    content: " ";    
+    content: " ";
 }
 
 [typeof=Movie] [property=director]:not(:last-of-type):after {
-    content: ",";    
+    content: ",";
 }
 
 [typeof=Movie] [property=productionCompany] {

@@ -1,5 +1,3 @@
-var Templates = {};
-
 $(function() {
 	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
 
@@ -38,13 +36,7 @@ $(function() {
 		// TODO: pagination
 	};
 
-	$.ajax({
-		url: "resources/Movie.html",
-		dataType: "text",
-	}).then(function(data) {
-		Templates.Movie = data;
-		init();
-	});
+	Templates.load(["Movie"]).done(init);
 
 	// listen for changes to the selected type of listing
 	$(window).bind("hashchange", init);
