@@ -36,11 +36,11 @@ $(function() {
 		"click a": function fetchURL(event) {
 			event.preventDefault();
 			event.stopPropagation();
-			tomatoes.get(event.currentTarget.href, {}, update);
+			tomatoes.get(event.currentTarget.href, {}, handleResponse);
 		}
 	});
 
-	var update = function(data) {
+	var handleResponse = function(data) {
 		movies.add(data.movies);
 
 		paginationView.links = data.links;
@@ -48,26 +48,30 @@ $(function() {
 
 		movies.each(augment);
 	};
-
-	var init = function() {
-		// reset the AJAX queue
-		$.ajaxQueue.stop(true);
-
+	
+	var getTypeFromLocation = function() {
 		// get the selected type of listing from the location hash
 		var type = location.hash.replace("#", "") || "in_theaters";
 
 		// set the active item in the nav bar
 		$("nav a").removeClass("active").filter("[href='#" + type + "']").addClass("active");
+		
+		return type;
+	};
+	
+	var refresh = function() {
+		// reset the AJAX queue
+		$.ajaxQueue.stop(true);
 
 		// empty the collection (in case switching sections)
 		movies.reset();
 
 		// fetch the list of items and display them
-		tomatoes.list(type, update);
+		tomatoes.list(getTypeFromLocation(), handleResponse);
 	};
 
-	Templates.load(["Movie"]).done(init);
+	Templates.load(["Movie"]).done(refresh);
 
 	// listen for changes to the selected type of listing
-	$(window).bind("hashchange", init);
+	$(window).bind("hashchange", refresh);
 });
