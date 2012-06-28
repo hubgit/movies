@@ -42,8 +42,10 @@ $(function() {
 
 	var update = function(data) {
 		movies.add(data.movies);
-		moviesView.render();
-		paginationView.render(data.links);
+
+		paginationView.links = data.links;
+		paginationView.render();
+
 		movies.each(augment);
 	};
 

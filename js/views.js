@@ -9,7 +9,7 @@ Views.Movie = Backbone.View.extend({
     },
 
     initialize: function() {
-      this.model.bind("change", this.render, this);
+      this.model.on("change", this.render, this);
     },
 
     render: function() {
@@ -19,11 +19,10 @@ Views.Movie = Backbone.View.extend({
 });
 
 Views.Movies = Backbone.View.extend({
-    /*
     initialize: function() {
-        this.$el.appendTo("body");
+        //this.$el.appendTo("body");
+        this.collection.on("add remove reset", this.render, this);
     },
-    */
 
     events: {
         "click a": "openNewWindow"
@@ -31,10 +30,10 @@ Views.Movies = Backbone.View.extend({
 
     render: function() {
         this.$el.empty();
-        this.collection.each(this.append, this);
+        this.collection.each(this.appendItemView, this);
     },
 
-    append: function(movie) {
+    appendItemView: function(movie) {
         var view = new Views.Movie({ model: movie });
         this.$el.append(view.render().el);
     },
@@ -47,8 +46,8 @@ Views.Movies = Backbone.View.extend({
 });
 
 Views.Pagination = Backbone.View.extend({
-    render: function(links) {
+    render: function() {
         this.$el.empty();
-        if (links.next) $("<a/>", { href: links.next, html: "More &darr;" }).appendTo(this.$el);
+        if (this.links.next) $("<a/>", { href: this.links.next, html: "More &darr;" }).appendTo(this.$el);
     },
 });
