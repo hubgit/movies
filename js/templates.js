@@ -9,6 +9,6 @@ Templates.fetch = function(template) {
         url: "templates/" + encodeURIComponent(template) + ".html",
         dataType: "text",
     }).done(function(data) {
-        Templates[template] = data;
+        Templates[template] = Handlebars.compile(data);
     });
 };

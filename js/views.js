@@ -13,7 +13,7 @@ Views.Movie = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(Mustache.render(Templates.Movie, this.model.toJSON()));
+        this.$el.html(Templates.Movie(this.model.toJSON()));
         return this;
     }
 });
