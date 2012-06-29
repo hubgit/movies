@@ -5,7 +5,7 @@
 {{#if year}}<div property="datePublished">{{year}}</div>{{/if}}
 
 <div>
-	{{#each abridged_directors}}<span property="director">{{this.name}}</span>{{/each}}
+	{{#each abridged_directors}}<span property="director">{{name}}</span>{{/each}}
 </div>
 
 <a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
@@ -14,8 +14,8 @@
 
 <footer>
 	<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
-	{{#if alternate_ids}}
-	{{#if imdb}}<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{imdb}}"></a>{{/if}}
-	{{#if imdb}}<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{imdb}}"></a>{{/if}}
-	{{/if}}
+{{#if alternate_ids.imdb}}
+	<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{alternate_ids.imdb}}"></a>
+	<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{alternate_ids.imdb}}"></a>
+{{/if}}
 </footer>
