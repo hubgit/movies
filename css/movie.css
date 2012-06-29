@@ -39,7 +39,6 @@
 [typeof=Movie] [property=url] {
     display: block;
     margin: 5px 0;
-    height: 270px;
 }
 
 @media only screen and (max-device-width : 480px) {
