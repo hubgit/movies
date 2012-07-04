@@ -21,19 +21,20 @@ Views.Movie = Backbone.View.extend({
 Views.Movies = Backbone.View.extend({
     initialize: function() {
         //this.$el.appendTo("body");
-        this.collection.on("add remove reset", this.render, this);
+        this.collection.on("reset", this.reset, this);
+        this.collection.on("add", this.add, this);
     },
 
     events: {
         "click a": "openNewWindow"
     },
 
-    render: function() {
+    reset: function() {
         this.$el.empty();
-        this.collection.each(this.appendItemView, this);
+        this.collection.each(this.add, this);
     },
 
-    appendItemView: function(movie) {
+    add: function(movie) {
         var view = new Views.Movie({ model: movie });
         this.$el.append(view.render().el);
     },
