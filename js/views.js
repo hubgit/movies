@@ -20,7 +20,7 @@ Views.Movie = Backbone.View.extend({
 
 Views.Movies = Backbone.View.extend({
     initialize: function() {
-        //this.$el.appendTo("body");
+        this.$el.appendTo("body");
         this.collection.on("reset", this.reset, this);
         this.collection.on("add", this.add, this);
     },
@@ -43,12 +43,28 @@ Views.Movies = Backbone.View.extend({
         event.preventDefault();
         event.stopPropagation();
         window.open(event.currentTarget.href);
-    },
+    }
 });
 
 Views.Pagination = Backbone.View.extend({
+    initialize: function() {
+        this.$el.appendTo("body");
+    },
+
     render: function() {
         this.$el.empty();
         if (this.links.next) $("<a/>", { href: this.links.next, html: "More &darr;" }).appendTo(this.$el);
+    }
+});
+
+Views.Header = Backbone.View.extend({
+    tagName: "header",
+    
+    initialize: function() {
+        this.$el.appendTo("body");
     },
+
+    render: function() {
+        this.$el.html(Templates.Header());
+    }
 });

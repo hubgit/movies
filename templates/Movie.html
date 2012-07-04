@@ -4,13 +4,17 @@
 
 {{#if year}}<div property="datePublished">{{year}}</div>{{/if}}
 
-<div>
+<div class="plural">
 	{{#each abridged_directors}}<span property="director">{{name}}</span>{{/each}}
 </div>
 
 <a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
 
 <div property="productionCompany">{{studio}}</div>
+
+<div class="plural">
+	{{#each production_countries}}<span property="country">{{name}}</span>{{/each}}
+</div>
 
 <footer>
 	<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>

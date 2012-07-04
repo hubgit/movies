@@ -1,14 +1,18 @@
 var Templates = {};
 
-Templates.load = function(templates) {
-    return $.when.apply(this, templates.map(this.fetch));
-};
+var TemplateLoader = function(templatesList) {
+	this.load = function(templates) {
+	    return $.when.apply(this, templates.map(fetch));
+	};
 
-Templates.fetch = function(template) {
-    return $.ajax({
-        url: "templates/" + encodeURIComponent(template) + ".html",
-        dataType: "text",
-    }).done(function(data) {
-        Templates[template] = Handlebars.compile(data);
-    });
+	var fetch = function(template) {
+		var request = $.ajax({
+	        url: "templates/" + encodeURIComponent(template) + ".html",
+	        dataType: "text"
+	    });
+
+	    return request.done(function(data) {
+	        templatesList[template] = Handlebars.compile(data);
+	    });
+	};
 };
