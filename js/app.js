@@ -32,13 +32,18 @@ $(function() {
 		});
 	};
 
+	var fetchURL = function(event) {
+		console.log(event);
+		event.preventDefault();
+		event.stopPropagation();
+		tomatoes.get(event.currentTarget.href, {}, handleResponse);
+	};
+
 	paginationView.delegateEvents({
-		"click a": function fetchURL(event) {
-			event.preventDefault();
-			event.stopPropagation();
-			tomatoes.get(event.currentTarget.href, {}, handleResponse);
-		}
+		"click a": fetchURL
 	});
+
+	paginationView.$el.on("inview", "a", fetchURL);
 
 	var handleResponse = function(data) {
 		movies.add(data.movies);
