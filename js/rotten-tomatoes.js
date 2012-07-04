@@ -7,10 +7,13 @@ var RottenTomatoes = function(options) {
         country: "uk"
     }, options);
 
-    this.get = function(url, params, callback) {
+    this.get = function(url, params, callback, queue) {
         params = $.extend({}, this.defaults, params);
         url += url.indexOf("?") === -1 ? "?" : "&";
-        $.ajaxQueue({
+
+        var method = queue ? $.ajaxQueue : $.ajax;
+
+        method({
             url: url + "callback=?",
             data: params,
             dataType: "json",

@@ -29,11 +29,10 @@ $(function() {
 				movie.set(data);
 				movie.set("augmented", true);
 			}
-		});
+		}, true);
 	};
 
 	var fetchURL = function(event) {
-		console.log(event);
 		event.preventDefault();
 		event.stopPropagation();
 		tomatoes.get(event.currentTarget.href, {}, handleResponse);
