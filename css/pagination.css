@@ -13,3 +13,7 @@
 .pagination a:hover {
 	background: #000;
 }
+
+.pagination .loading {
+	opacity: 0.5;
+}

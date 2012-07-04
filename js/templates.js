@@ -1,6 +1,6 @@
 var Templates = {};
 
-var TemplateLoader = function(templatesList) {
+var TemplateLoader = function() {
 	this.load = function(templates) {
 	    return $.when.apply(this, templates.map(fetch));
 	};
@@ -12,7 +12,7 @@ var TemplateLoader = function(templatesList) {
 	    });
 
 	    return request.done(function(data) {
-	        templatesList[template] = Handlebars.compile(data);
+	        Templates[template] = Handlebars.compile(data);
 	    });
 	};
 };

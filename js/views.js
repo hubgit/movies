@@ -49,19 +49,28 @@ Views.Movies = Backbone.View.extend({
 Views.Pagination = Backbone.View.extend({
     initialize: function() {
         this.$el.appendTo("body");
+        this.collection.on("reset", this.reset, this);
     },
 
-    render: function() {
+    reset: function() {
         this.$el.empty();
-        if (this.links.next) $("<a/>", { href: this.links.next, html: "More &darr;" }).appendTo(this.$el);
+        this.collection.each(this.add, this);
+    },
+
+    add: function(links) {
+        var url = links.get("next");
+        if (!url) return;
+
+        $("<a/>", { href: url, html: "More &darr;" }).appendTo(this.$el);
     }
 });
 
 Views.Header = Backbone.View.extend({
     tagName: "header",
-    
+
     initialize: function() {
         this.$el.appendTo("body");
+        this.render();
     },
 
     render: function() {
