@@ -79,14 +79,12 @@ $(function() {
 		tomatoes.list(getTypeFromLocation(), handleResponse);
 	};
 
-	var loadTemplate = function(template) {
-		var data = $("[data-template=" + template.toLowerCase() + "]").html();
-		Templates[template] = Handlebars.compile(data);
+	var loadTemplate = function() {
+		var template = $(this);
+		Templates[template.data("template")] = Handlebars.compile(template.html());
 	};
 
 	var renderViews = function() {
-		["Movie"].forEach(loadTemplate);
-
 		headerView = new Views.Header();
 
 		moviesView = new Views.Movies({
@@ -109,12 +107,10 @@ $(function() {
 		paginationView.delegateEvents(events);
 	};
 
-	var init = function() {
-		renderViews();
-		refresh();
-	};
+	$("[data-template]").each(loadTemplate);
 
-	$(init);
+	renderViews();
+	refresh();
 
 	// listen for changes to the selected type of listing
 	$(window).bind("hashchange", refresh);
