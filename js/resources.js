@@ -65,7 +65,7 @@ Views.Pagination = Backbone.View.extend({
         var url = links.get("next");
         if (!url) return;
 
-        $("<a/>", { href: url, html: "More &darr;" }).appendTo(this.$el);
+        $("<a/>", { href: url, html: "More &darr;", rel: "next" }).appendTo(this.$el);
     }
 });
 

@@ -74,6 +74,7 @@ $(function() {
 
 		// empty the collection (in case switching sections)
 		movies.reset();
+		links.reset();
 
 		// fetch the list of items and display them
 		tomatoes.list(getTypeFromLocation(), handleResponse);
@@ -95,7 +96,7 @@ $(function() {
 
 		var events = {
 			"click a": fetchPage,
-			"inview a": fetchPage,
+			"inview a[rel=next]": fetchPage,
 		};
 
 		paginationView = new Views.Pagination({
