@@ -5,55 +5,58 @@
 
 <title>Movies in London</title>
 
-<link rel=stylesheet href=css/layout.css>
-<link rel=stylesheet href=css/nav.css>
-<link rel=stylesheet href=css/pagination.css>
-<link rel=stylesheet href=css/movie.css>
-<link rel=stylesheet href=css/service.css>
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/pagination.css">
+<link rel="stylesheet" href="css/movie.css">
+<link rel="stylesheet" href="css/service.css">
 
-<script src=js/jquery.js></script>
-<script src=js/jquery.ajaxQueue.js></script>
-<script src=js/jquery.inview.js></script>
-<script src=js/handlebars.js></script>
-<script src=js/underscore.js></script>
-<script src=js/backbone.js></script>
-<script src=js/rotten-tomatoes.js></script>
-<script src=js/tmdb.js></script>
-<script src=js/models.js></script>
-<script src=js/views.js></script>
-<script src=js/app.js></script>
+<script src="js/ext/jquery.js"></script>
+<script src="js/ext/jquery.ajaxQueue.js"></script>
+<script src="js/ext/jquery.inview.js"></script>
+<script src="js/ext/handlebars.js"></script>
+<script src="js/ext/underscore.js"></script>
+<script src="js/ext/backbone.js"></script>
 
-<header>
+<script src="js/services/rotten-tomatoes.js"></script>
+<script src="js/services/tmdb.js"></script>
+
+<script src="js/resources.js"></script>
+<script src="js/app.js"></script>
+
+<!-- only templates below here -->
+
+<script type="text/html" data-template="header">
 	<nav class="wrapper">
 		<a href="#in_theaters">In Theatres</a>
 		<a href="#opening">Opening This Week</a>
 	</nav>
-</header>
+</script>
 
-<script type="text/html" id="template-movie">
-<div>
-	<a property="name" href="{{links.alternate}}">{{title}}</a>
-</div>
+<script type="text/html" data-template="movie">
+	<div>
+		<a property="name" href="{{links.alternate}}">{{title}}</a>
+	</div>
 
-{{#if year}}<div property="datePublished">{{year}}</div>{{/if}}
+	{{#if year}}<div property="datePublished">{{year}}</div>{{/if}}
 
-<div class="plural">
-	{{#each abridged_directors}}<span property="director">{{name}}</span>{{/each}}
-</div>
+	<div class="plural">
+		{{#each abridged_directors}}<span property="director">{{name}}</span>{{/each}}
+	</div>
 
-<a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
+	<a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
 
-<div property="productionCompany">{{studio}}</div>
+	<div property="productionCompany">{{studio}}</div>
 
-<div class="plural">
-	{{#each production_countries}}<span property="country">{{name}}</span>{{/each}}
-</div>
+	<div class="plural">
+		{{#each production_countries}}<span property="country">{{name}}</span>{{/each}}
+	</div>
 
-<footer>
-	<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
-{{#if alternate_ids.imdb}}
-	<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{alternate_ids.imdb}}"></a>
-	<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{alternate_ids.imdb}}"></a>
-{{/if}}
-</footer>
+	<footer>
+		<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
+	{{#if alternate_ids.imdb}}
+		<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{alternate_ids.imdb}}"></a>
+		<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{alternate_ids.imdb}}"></a>
+	{{/if}}
+	</footer>
 </script>

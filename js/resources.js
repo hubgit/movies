@@ -1,4 +1,8 @@
-var Views = {}, Templates = {};
+var Collections = {}, Views = {}, Templates = {};
+
+Collections.Movies = Backbone.Collection.extend({});
+
+Collections.Links = Backbone.Collection.extend({});
 
 Views.Movie = Backbone.View.extend({
     tagName: "article",

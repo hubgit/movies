@@ -1,8 +1,8 @@
 $(function() {
 	var headerView, moviesView, paginationView;
 
-	var movies = new Models.Movies();
-	var links = new Models.Links();
+	var movies = new Collections.Movies();
+	var links = new Collections.Links();
 
 	/** API calls **/
 
@@ -79,8 +79,15 @@ $(function() {
 		tomatoes.list(getTypeFromLocation(), handleResponse);
 	};
 
+	var loadTemplate = function(template) {
+		var data = $("[data-template=" + template.toLowerCase() + "]").html();
+		Templates[template] = Handlebars.compile(data);
+	};
+
 	var renderViews = function() {
-		loadTemplate("Movie");
+		["Header", "Movie"].forEach(loadTemplate);
+
+		headerView = new Views.Header();
 
 		moviesView = new Views.Movies({
 			id: "movies",
@@ -105,11 +112,6 @@ $(function() {
 	var init = function() {
 		renderViews();
 		refresh();
-	};
-
-	var loadTemplate = function(template) {
-		var data = $("#template-" + template.toLowerCase()).html();
-		Templates[template] = Handlebars.compile(data);
 	};
 
 	$(init);
