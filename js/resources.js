@@ -78,6 +78,17 @@ Views.Header = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(Templates.Header());
+        var nav = $("<nav/>").addClass("wrapper");
+
+        var fragments = {
+            "in_theaters": "In Theatres",
+            "opening": "Opening This Week"
+        };
+
+        $.each(fragments, function(fragment, text) {
+            $("<a/>", { href: "#" + fragment, text: text }).appendTo(nav);
+        });
+
+        this.$el.append(nav);
     }
 });

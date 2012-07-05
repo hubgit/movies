@@ -32,7 +32,7 @@ $(function() {
 	};
 
 	var augmentors = {
-		"rt": augmentTomatoes, 
+		"rt": augmentTomatoes,
 		//"tmdb": augmentTMDB
 	};
 
@@ -57,17 +57,17 @@ $(function() {
 		links.reset(data.links);
 		movies.each(augment);
 	};
-	
+
 	var getTypeFromLocation = function() {
 		// get the selected type of listing from the location hash
 		var type = location.hash.replace("#", "") || "in_theaters";
 
 		// set the active item in the nav bar
 		$("nav a").removeClass("active").filter("[href='#" + type + "']").addClass("active");
-		
+
 		return type;
 	};
-	
+
 	var refresh = function() {
 		// reset the AJAX queue
 		$.ajaxQueue.stop(true);
@@ -85,7 +85,7 @@ $(function() {
 	};
 
 	var renderViews = function() {
-		["Header", "Movie"].forEach(loadTemplate);
+		["Movie"].forEach(loadTemplate);
 
 		headerView = new Views.Header();
 
