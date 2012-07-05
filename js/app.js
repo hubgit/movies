@@ -80,7 +80,7 @@ $(function() {
 	};
 
 	var renderViews = function() {
-		headerView = new Views.Header();
+		loadTemplate("Movie");
 
 		moviesView = new Views.Movies({
 			id: "movies",
@@ -107,7 +107,12 @@ $(function() {
 		refresh();
 	};
 
-	(new TemplateLoader()).load(["Movie", "Header"]).done(init);
+	var loadTemplate = function(template) {
+		var data = $("#template-" + template.toLowerCase()).html();
+		Templates[template] = Handlebars.compile(data);
+	};
+
+	$(init);
 
 	// listen for changes to the selected type of listing
 	$(window).bind("hashchange", refresh);

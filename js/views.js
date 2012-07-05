@@ -1,4 +1,4 @@
-var Views = {};
+var Views = {}, Templates = {};
 
 Views.Movie = Backbone.View.extend({
     tagName: "article",
