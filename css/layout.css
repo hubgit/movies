@@ -40,12 +40,6 @@ a:hover, a:active {
 	}
 }
 
-@media only screen and (max-device-width : 480px) {
-	.wrapper {
-		width: 100%;
-	}
-}
-
 header {
 	background: #444;
 	box-shadow: 0 5px 10px #aaa;
