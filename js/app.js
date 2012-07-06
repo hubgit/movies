@@ -7,7 +7,7 @@ $(function() {
 	/** API calls **/
 
 	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
-	var tmdb = new TMDB({ api_key: "" });
+	var tmdb = new TMDB({ api_key: "6afa2885030d27b856cfe12039ffa908" });
 
 	var augmentTomatoes = function(movie) {
 		tomatoes.get(movie.get("links").self, {}, function(data) {

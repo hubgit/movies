@@ -4,11 +4,9 @@ var TMDB = function(options) {
     this.defaults = $.extend({}, options);
 
     this.get = function(url, params, callback) {
-        params = $.extend({}, this.defaults, params);
-
         $.ajaxQueue({
             url: url,
-            data: params,
+            data: $.extend({}, this.defaults, params),
             dataType: "json",
             success: callback,
         });
