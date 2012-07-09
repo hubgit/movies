@@ -4,41 +4,47 @@ $(function() {
 	var movies = new Collections.Movies();
 	var links = new Collections.Links();
 
-	/** API calls **/
+	/** API keys **/
 
 	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
 	var tmdb = new TMDB({ api_key: "6afa2885030d27b856cfe12039ffa908" });
 
-	var augmentTomatoes = function(movie) {
-		tomatoes.get(movie.get("links").self, {}, function(data) {
-			movie.set(data);
-			movie.augmented.rt = true;
-		}, true);
-	};
-
-	var augmentTMDB = function(movie) {
-		var ids = movie.get("alternate_ids");
-		if(!ids || !ids.imdb) return;
-
-		// fetch full data for individual movie
-		tmdb.movie("tt" + ids.imdb, function(data) {
-			movie.set({ production_countries: data.production_countries });
-			movie.augmented.tmdb = true;
-		});
-	};
+	/** Augmentors **/
 
 	var augmentors = {
-		"rt": augmentTomatoes,
-		"tmdb": augmentTMDB
+		"rt": function augmentTomatoes(movie) {
+			tomatoes.get(movie.get("links").self, {}, function(data) {
+				movie.set(data);
+				movie.augmented.rt = true;
+			}, true);
+		},
+		"tmdb": function augmentTMDB(movie) {
+			var ids = movie.get("alternate_ids");
+			if(!ids || !ids.imdb) return;
+
+			// fetch full data for individual movie
+			tmdb.movie("tt" + ids.imdb, function(data) {
+				movie.set({ production_countries: data.production_countries });
+				movie.augmented.tmdb = true;
+			});
+		}
 	};
 
-	// augment each item with extra information
 	var augment = function(movie) {
 		if (!movie.augmented) movie.augmented = {};
 
+		// augment each item with extra information
 		$.each(augmentors, function(index, augmentor) {
 			if(!movie.augmented[index]) augmentor(movie);
 		});
+	};
+
+	/** Fetch the list of movies and update the collection **/
+
+	var handleResponse = function(data) {
+		movies.add(data.movies);
+		links.reset(data.links);
+		movies.each(augment);
 	};
 
 	var fetchPage = function(event) {
@@ -46,12 +52,6 @@ $(function() {
 		event.stopPropagation();
 		$(event.currentTarget).addClass("loading").html("Loading more&hellip;");
 		tomatoes.get(event.currentTarget.href, {}, handleResponse);
-	};
-
-	var handleResponse = function(data) {
-		movies.add(data.movies);
-		links.reset(data.links);
-		movies.each(augment);
 	};
 
 	var getTypeFromLocation = function() {
@@ -81,6 +81,10 @@ $(function() {
 		Templates[template.data("template")] = Handlebars.compile(template.html());
 	};
 
+	$("[data-template]").each(loadTemplate);
+
+	/** Render views **/
+
 	var renderViews = function() {
 		headerView = new Views.Header();
 
@@ -104,7 +108,6 @@ $(function() {
 		paginationView.delegateEvents(events);
 	};
 
-	$("[data-template]").each(loadTemplate);
 
 	renderViews();
 	refresh();
