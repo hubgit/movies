@@ -30,9 +30,13 @@
 }
 
 [typeof=Movie] [property=url] {
-    display: block;
+    display: inline-block;
     margin: 5px 0;
     box-shadow: 0 2px 8px black;
+    font-size: 0;
+}
+
+[typeof=Movie] [property=url][href$= {
 }
 
 @media only screen and (max-device-width: 480px) {
