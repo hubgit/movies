@@ -33,7 +33,7 @@ $(function() {
 
 	var augmentors = {
 		"rt": augmentTomatoes,
-		//"tmdb": augmentTMDB
+		"tmdb": augmentTMDB
 	};
 
 	// augment each item with extra information
