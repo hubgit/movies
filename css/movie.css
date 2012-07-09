@@ -25,7 +25,8 @@
     font-weight: bold;
 }
 
-[typeof=Movie] [property=productionCompany] {
+[typeof=Movie] [property=productionCompany],
+[typeof=Movie] [property=country] {
     color: #777;
 }
 

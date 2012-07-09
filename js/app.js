@@ -11,10 +11,8 @@ $(function() {
 
 	var augmentTomatoes = function(movie) {
 		tomatoes.get(movie.get("links").self, {}, function(data) {
-			if (data) {
-				movie.set(data);
-				movie.augmented.rt = true;
-			}
+			movie.set(data);
+			movie.augmented.rt = true;
 		}, true);
 	};
 
@@ -23,11 +21,9 @@ $(function() {
 		if(!ids || !ids.imdb) return;
 
 		// fetch full data for individual movie
-		tmdb.movie("tt" + ids.imdb, {}, function(data) {
-			if (data) {
-				movie.set({ production_countries: data.production_countries });
-				movie.augmented.tmdb = true;
-			}
+		tmdb.movie("tt" + ids.imdb, function(data) {
+			movie.set({ production_countries: data.production_countries });
+			movie.augmented.tmdb = true;
 		});
 	};
 
