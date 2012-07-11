@@ -1,3 +1,6 @@
+/*jshint browser: true, newcap: true, nomen: false, plusplus: false, undef: true, white: false */
+/*global Collections, Models, Templates, Views, RottenTomatoes, TMDB, jQuery, Handlebars, $ */
+
 $(function() {
 	var headerView, moviesView, paginationView;
 
@@ -96,7 +99,7 @@ $(function() {
 
 		var events = {
 			"click a": fetchPage,
-			"inview a[rel=next]": fetchPage,
+			"inview a[rel=next]": fetchPage
 		};
 
 		paginationView = new Views.Pagination({

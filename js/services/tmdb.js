@@ -7,7 +7,7 @@ var TMDB = function(options) {
         $.ajaxQueue({
             url: url,
             data: $.extend({}, this.defaults, params),
-            dataType: "jsonp",
+            dataType: "json",
             success: callback,
             cache: true
         });
