@@ -16,7 +16,7 @@ $(function() {
 
 	var augmentors = {
 		"rt": function augmentTomatoes(movie) {
-			var request = Services.RottenTomatoes.get(movie.get("links").self, {}, true);
+			var request = Services.RottenTomatoes.get(movie.get("links").self, { queue: true });
 
 			request.done(function(data) {
 				movie.set(data);
@@ -28,7 +28,10 @@ $(function() {
 			if(!ids || !ids.imdb) return;
 
 			// fetch full data for individual movie
-			Services.TMDB.movie("tt" + ids.imdb, function(data) {
+			var url = Services.TMDB.itemURL("tt" + ids.imdb);
+			var request = Services.TMDB.get(url);
+
+			request.done(function(data) {
 				movie.set({ production_countries: data.production_countries });
 				movie.augmented.tmdb = true;
 			});

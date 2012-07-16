@@ -1,14 +1,16 @@
-var Collections = {}, Views = {}, Templates = {}, Services = {};
+/*global Backbone, Services, $, window */
+
+var Collections = {}, Views = {}, Templates = {};
 
 Collections.Movies = Backbone.Collection.extend({
     sync: function(method, collection, options) {
         var request;
 
         if(options.url) {
-            request = Services.RottenTomatoes.get(options.url, {}, false);
+            request = Services.RottenTomatoes.get(options.url, { queue: false });
         }
         else {
-            request = Services.RottenTomatoes.list(options.type);
+            request = Services.RottenTomatoes.get(Services.RottenTomatoes.listURL(options.type));
         }
 
         request.done(options.success);
@@ -26,8 +28,8 @@ Views.Movie = Backbone.View.extend({
     tagName: "article",
 
     attributes: {
-    	"vocab": "http://schema.org/",
-    	"typeof": "Movie"
+        "vocab": "http://schema.org/",
+        "typeof": "Movie"
     },
 
     initialize: function() {
