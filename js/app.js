@@ -1,5 +1,5 @@
 /*jshint browser: true, newcap: true, nomen: false, plusplus: false, undef: true, white: false */
-/*global Collections, Templates, Views, Services, RottenTomatoes, TMDB, jQuery, Handlebars, $ */
+/*global Collections, Templates, Views, Services, RottenTomatoes, TMDB, jQuery, $ */
 
 $(function() {
 	var headerView, moviesView, paginationView;
@@ -83,13 +83,6 @@ $(function() {
 		//Services.RottenTomatoes.list(getTypeFromLocation(), handleResponse);
 		movies.fetch({ type: getTypeFromLocation(), success: updateLinks });
 	};
-
-	var loadTemplate = function() {
-		var template = $(this);
-		Templates[template.data("template")] = Handlebars.compile(template.html());
-	};
-
-	$("[data-template]").each(loadTemplate);
 
 	/** Render views **/
 
