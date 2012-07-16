@@ -4,13 +4,17 @@
 $(function() {
 	var headerView, moviesView, paginationView;
 
-	var movies = new Collections.Movies();
-	var links = new Collections.Links();
-
 	/** API keys **/
 
-	Services.RottenTomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
-	Services.TMDB = new TMDB({ api_key: "6afa2885030d27b856cfe12039ffa908" });
+	var Services = {
+		RottenTomatoes: new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" }),
+		TMDB: new TMDB({ api_key: "6afa2885030d27b856cfe12039ffa908" })
+	};
+
+	var movies = new Collections.Movies();
+	movies.service = Services.RottenTomatoes;
+
+	var links = new Collections.Links();
 
 	/** Augmentors **/
 
@@ -29,7 +33,7 @@ $(function() {
 
 			// fetch full data for individual movie
 			var url = Services.TMDB.itemURL("tt" + ids.imdb);
-			var request = Services.TMDB.get(url);
+			var request = Services.TMDB.get(url, { queue: true });
 
 			request.done(function(data) {
 				movie.set({ production_countries: data.production_countries });
@@ -81,7 +85,7 @@ $(function() {
 
 		// fetch the list of items and display them
 		//Services.RottenTomatoes.list(getTypeFromLocation(), handleResponse);
-		movies.fetch({ type: getTypeFromLocation(), success: updateLinks });
+		movies.fetch({ type: getTypeFromLocation(), success: updateLinks, cache: false });
 	};
 
 	/** Render views **/

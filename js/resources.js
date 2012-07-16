@@ -1,4 +1,4 @@
-/*global Backbone, Services, $, Handlebars, window */
+/*global Backbone, $, Handlebars, window */
 
 var Templates = {};
 
@@ -12,16 +12,8 @@ $(function() {
 var Collections = {
     Movies:  Backbone.Collection.extend({
         sync: function(method, collection, options) {
-            var request;
-
-            if(options.url) {
-                request = Services.RottenTomatoes.get(options.url, { queue: false });
-            }
-            else {
-                request = Services.RottenTomatoes.get(Services.RottenTomatoes.listURL(options.type));
-            }
-
-            request.done(options.success);
+            options.url = options.url || this.service.listURL(options.type);
+            this.service.get(options.url, options).done(options.success);
         },
 
         parse: function(data) {

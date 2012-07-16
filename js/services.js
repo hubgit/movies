@@ -1,7 +1,5 @@
 /*global $ */
 
-var Services = {};
-
 var Service = function() {};
 
 Service.prototype.get = function(url, options) {
