@@ -1,6 +1,24 @@
-var Collections = {}, Views = {}, Templates = {};
+var Collections = {}, Views = {}, Templates = {}, Services = {};
 
-Collections.Movies = Backbone.Collection.extend({});
+Collections.Movies = Backbone.Collection.extend({
+    sync: function(method, collection, options) {
+        var request;
+
+        if(options.url) {
+            request = Services.RottenTomatoes.get(options.url, {}, false);
+        }
+        else {
+            request = Services.RottenTomatoes.list(options.type);
+        }
+
+        request.done(options.success);
+    },
+
+    parse: function(data) {
+        this.links = data.links;
+        return data.movies;
+    }
+});
 
 Collections.Links = Backbone.Collection.extend({});
 

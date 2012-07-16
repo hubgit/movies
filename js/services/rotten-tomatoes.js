@@ -7,19 +7,18 @@ var RottenTomatoes = function(options) {
         country: "uk",
     }, options);
 
-    this.get = function(url, params, callback, queue) {
+    this.get = function(url, params, queue) {
         var method = queue ? $.ajaxQueue : $.ajax;
 
-        method({
+        return method({
             url: url,
             data: $.extend({}, this.defaults, params),
             dataType: "jsonp",
-            success: callback,
             cache: true,
         });
     };
 
-    this.list = function(type, callback) {
-        this.get(this.base + "lists/movies/" + type + ".json", {}, callback);
+    this.list = function(type) {
+        return this.get(this.base + "lists/movies/" + type + ".json");
     };
 };

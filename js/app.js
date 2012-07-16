@@ -1,5 +1,5 @@
 /*jshint browser: true, newcap: true, nomen: false, plusplus: false, undef: true, white: false */
-/*global Collections, Models, Templates, Views, RottenTomatoes, TMDB, jQuery, Handlebars, $ */
+/*global Collections, Templates, Views, Services, RottenTomatoes, TMDB, jQuery, Handlebars, $ */
 
 $(function() {
 	var headerView, moviesView, paginationView;
@@ -9,24 +9,26 @@ $(function() {
 
 	/** API keys **/
 
-	var tomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
-	var tmdb = new TMDB({ api_key: "6afa2885030d27b856cfe12039ffa908" });
+	Services.RottenTomatoes = new RottenTomatoes({ apikey: "bsmgb5axsjekh4jbwqyt38ak" });
+	Services.TMDB = new TMDB({ api_key: "6afa2885030d27b856cfe12039ffa908" });
 
 	/** Augmentors **/
 
 	var augmentors = {
 		"rt": function augmentTomatoes(movie) {
-			tomatoes.get(movie.get("links").self, {}, function(data) {
+			var request = Services.RottenTomatoes.get(movie.get("links").self, {}, true);
+
+			request.done(function(data) {
 				movie.set(data);
 				movie.augmented.rt = true;
-			}, true);
+			});
 		},
 		"tmdb": function augmentTMDB(movie) {
 			var ids = movie.get("alternate_ids");
 			if(!ids || !ids.imdb) return;
 
 			// fetch full data for individual movie
-			tmdb.movie("tt" + ids.imdb, function(data) {
+			Services.TMDB.movie("tt" + ids.imdb, function(data) {
 				movie.set({ production_countries: data.production_countries });
 				movie.augmented.tmdb = true;
 			});
@@ -44,17 +46,16 @@ $(function() {
 
 	/** Fetch the list of movies and update the collection **/
 
-	var handleResponse = function(data) {
-		movies.add(data.movies);
-		links.reset(data.links);
-		movies.each(augment);
+	var updateLinks = function(collection) {
+		links.reset(collection.links);
+		collection.each(augment);
 	};
 
 	var fetchPage = function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		$(event.currentTarget).addClass("loading").html("Loading more&hellip;");
-		tomatoes.get(event.currentTarget.href, {}, handleResponse);
+		movies.fetch({ add: true, url: event.currentTarget.href, success: updateLinks });
 	};
 
 	var getTypeFromLocation = function() {
@@ -76,7 +77,8 @@ $(function() {
 		links.reset();
 
 		// fetch the list of items and display them
-		tomatoes.list(getTypeFromLocation(), handleResponse);
+		//Services.RottenTomatoes.list(getTypeFromLocation(), handleResponse);
+		movies.fetch({ type: getTypeFromLocation(), success: updateLinks });
 	};
 
 	var loadTemplate = function() {
