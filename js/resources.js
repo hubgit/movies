@@ -39,7 +39,9 @@ var Views = {
         },
 
         render: function() {
-            this.$el.html(Templates.Movie(this.model.toJSON()));
+            var data = this.model.toJSON();
+            this.$el.html(Templates.Movie(data));
+            if(data.old) this.$el.addClass("old");
             return this;
         }
     }),

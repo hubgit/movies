@@ -33,11 +33,13 @@
 [typeof=Movie] [property=url] {
     display: inline-block;
     margin: 5px 0;
-    box-shadow: 0 2px 8px black;
+    box-shadow: 0 0 7px black;
     font-size: 0;
 }
 
-[typeof=Movie] [property=url][href$= {
+[typeof=Movie].old {
+    /*webkit-filter: grayscale(1);*/
+    opacity: 0.5;
 }
 
 @media only screen and (max-device-width: 480px) {

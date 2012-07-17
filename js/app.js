@@ -18,11 +18,19 @@ $(function() {
 
 	/** Augmentors **/
 
+	var today = new Date(),
+		oneWeekAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+
 	var augmentors = {
 		"rt": function augmentTomatoes(movie) {
+			var releaseDate;
+
 			var request = Services.RottenTomatoes.get(movie.get("links").self, { queue: true });
 
 			request.done(function(data) {
+				releaseDate = new Date(data.release_dates.theater);
+				if (releaseDate < oneWeekAgo) data.old = true;
+
 				movie.set(data);
 				movie.augmented.rt = true;
 			});
