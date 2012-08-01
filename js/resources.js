@@ -102,7 +102,7 @@ var Views = {
         },
 
         render: function() {
-            var nav = $("<nav/>").addClass("wrapper");
+            var nav = $("<nav/>");
 
             var fragments = {
                 "in_theaters": "In Theatres",
