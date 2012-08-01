@@ -1,30 +1,3 @@
-/*global Backbone, $, Handlebars, window */
-
-var Templates = {};
-
-$(function() {
-    $("[data-template]").each(function loadTemplate() {
-        var template = $(this);
-        Templates[template.data("template")] = Handlebars.compile(template.html());
-    });
-});
-
-var Collections = {
-    Movies:  Backbone.Collection.extend({
-        sync: function(method, collection, options) {
-            options.url = options.url || this.service.listURL(options.type);
-            this.service.get(options.url, options).done(options.success);
-        },
-
-        parse: function(data) {
-            this.links = data.links;
-            return data.movies;
-        }
-    }),
-
-    Links: Backbone.Collection.extend({})
-};
-
 var Views = {
     Movie: Backbone.View.extend({
         tagName: "article",
