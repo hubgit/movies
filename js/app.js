@@ -103,7 +103,6 @@ $(function() {
 
 		moviesView = new Views.Movies({
 			id: "movies",
-			className: "wrapper",
 			collection: movies
 		});
 
@@ -114,7 +113,7 @@ $(function() {
 
 		paginationView = new Views.Pagination({
 			id: "pagination",
-			className: "wrapper pagination",
+			className: "pagination",
 			collection: links
 		});
 
