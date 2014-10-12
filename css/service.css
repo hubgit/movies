@@ -19,7 +19,7 @@
 }
 
 .service[data-service="letterboxd"] {
-    background-image: url("http://letterboxd.com/static/img/favicon.png");
+    background-image: url("http://letterboxd.com/favicon.ico");
 }
 
 .service[data-service="imdb"] {
