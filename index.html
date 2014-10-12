@@ -41,20 +41,27 @@
 	<div class="plural">
 		{{#each abridged_directors}}<span property="director">{{name}}</span>{{/each}}
 	</div>
+	
+	<div class="meta">
 
-	<a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
+		<a property="url" href="{{links.alternate}}"><img property="thumbnailUrl" src="{{posters.detailed}}"></a>
 
-	<div property="productionCompany">{{studio}}</div>
+		<div class="info">
+		
+			<div property="productionCompany">{{studio}}</div>
 
-	<div class="plural">
-		{{#each production_countries}}<span property="country">{{iso_3166_1}}</span>{{/each}}
+			<div class="plural">
+				{{#each production_countries}}<span property="country">{{iso_3166_1}}</span>{{/each}}
+			</div>
+
+			<footer>
+				<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
+			{{#if alternate_ids.imdb}}
+				<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{alternate_ids.imdb}}"></a>
+				<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{alternate_ids.imdb}}"></a>
+			{{/if}}
+			</footer>
+		</div>
+		
 	</div>
-
-	<footer>
-		<a class="service" data-service="google" href="http://www.google.co.uk/movies?q={{title}}"></a>
-	{{#if alternate_ids.imdb}}
-		<a class="service" data-service="imdb" href="http://www.imdb.com/title/tt{{alternate_ids.imdb}}"></a>
-		<a class="service" data-service="letterboxd" href="http://letterboxd.com/imdb/tt{{alternate_ids.imdb}}"></a>
-	{{/if}}
-	</footer>
 </script>
