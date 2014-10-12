@@ -5,7 +5,6 @@
     width: 200px;
     margin: 10px;
     padding: 10px;
-    clear: both;
 }
 
 [typeof=Movie] [property=name] {
@@ -36,8 +35,14 @@
     margin: 5px 0;
     box-shadow: 0 0 7px black;
     font-size: 0;
-    float: left;
-    margin-right: 10px;
+}
+
+[typeof=Movie] .meta {
+    display: flex;
+}
+
+[typeof=Movie] .info {
+    flex: 1;
 }
 
 [typeof=Movie].old {
